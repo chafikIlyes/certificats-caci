@@ -1,0 +1,186 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-certificat-origine-heading" jhiTranslate="certificatcaciApp.certificatOrigine.home.createOrEditLabel">Create or edit a Certificat Origine</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.nomExportateur" for="field_nomExportateur">Nom Exportateur</label>
+                    <input type="text" class="form-control" name="nomExportateur" id="field_nomExportateur"
+                           formControlName="nomExportateur"/>
+                    <div *ngIf="editForm.get('nomExportateur')!.invalid && (editForm.get('nomExportateur')!.dirty || editForm.get('nomExportateur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomExportateur')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.adresseExportateur" for="field_adresseExportateur">Adresse Exportateur</label>
+                    <input type="text" class="form-control" name="adresseExportateur" id="field_adresseExportateur"
+                           formControlName="adresseExportateur"/>
+                    <div *ngIf="editForm.get('adresseExportateur')!.invalid && (editForm.get('adresseExportateur')!.dirty || editForm.get('adresseExportateur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('adresseExportateur')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.nomProducteur" for="field_nomProducteur">Nom Producteur</label>
+                    <input type="text" class="form-control" name="nomProducteur" id="field_nomProducteur"
+                           formControlName="nomProducteur"/>
+                    <div *ngIf="editForm.get('nomProducteur')!.invalid && (editForm.get('nomProducteur')!.dirty || editForm.get('nomProducteur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomProducteur')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.adresseProducteur" for="field_adresseProducteur">Adresse Producteur</label>
+                    <input type="text" class="form-control" name="adresseProducteur" id="field_adresseProducteur"
+                           formControlName="adresseProducteur"/>
+                    <div *ngIf="editForm.get('adresseProducteur')!.invalid && (editForm.get('adresseProducteur')!.dirty || editForm.get('adresseProducteur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('adresseProducteur')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.nomImportateur" for="field_nomImportateur">Nom Importateur</label>
+                    <input type="text" class="form-control" name="nomImportateur" id="field_nomImportateur"
+                           formControlName="nomImportateur"/>
+                    <div *ngIf="editForm.get('nomImportateur')!.invalid && (editForm.get('nomImportateur')!.dirty || editForm.get('nomImportateur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomImportateur')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.adresseImportateur" for="field_adresseImportateur">Adresse Importateur</label>
+                    <input type="text" class="form-control" name="adresseImportateur" id="field_adresseImportateur"
+                           formControlName="adresseImportateur"/>
+                    <div *ngIf="editForm.get('adresseImportateur')!.invalid && (editForm.get('adresseImportateur')!.dirty || editForm.get('adresseImportateur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('adresseImportateur')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.payOrigine" for="field_payOrigine">Pay Origine</label>
+                    <input type="text" class="form-control" name="payOrigine" id="field_payOrigine"
+                           formControlName="payOrigine"/>
+                    <div *ngIf="editForm.get('payOrigine')!.invalid && (editForm.get('payOrigine')!.dirty || editForm.get('payOrigine')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('payOrigine')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.autreOrigine" for="field_autreOrigine">Autre Origine</label>
+                    <input type="checkbox" class="form-control" name="autreOrigine" id="field_autreOrigine"
+                           formControlName="autreOrigine"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.payAutreOrigine" for="field_payAutreOrigine">Pay Autre Origine</label>
+                    <input type="text" class="form-control" name="payAutreOrigine" id="field_payAutreOrigine"
+                           formControlName="payAutreOrigine"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.detailTransport" for="field_detailTransport">Detail Transport</label>
+                    <input type="text" class="form-control" name="detailTransport" id="field_detailTransport"
+                           formControlName="detailTransport"/>
+                    <div *ngIf="editForm.get('detailTransport')!.invalid && (editForm.get('detailTransport')!.dirty || editForm.get('detailTransport')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('detailTransport')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.observation" for="field_observation">Observation</label>
+                    <input type="text" class="form-control" name="observation" id="field_observation"
+                           formControlName="observation"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.etatCertificat" for="field_etatCertificat">Etat Certificat</label>
+                    <input type="text" class="form-control" name="etatCertificat" id="field_etatCertificat"
+                           formControlName="etatCertificat"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.typeCertificats" for="field_typeCertificats">Type Certificats</label>
+                    <input type="text" class="form-control" name="typeCertificats" id="field_typeCertificats"
+                           formControlName="typeCertificats"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.nomSignataire" for="field_nomSignataire">Nom Signataire</label>
+                    <input type="text" class="form-control" name="nomSignataire" id="field_nomSignataire"
+                           formControlName="nomSignataire"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.prenomSignataire" for="field_prenomSignataire">Prenom Signataire</label>
+                    <input type="text" class="form-control" name="prenomSignataire" id="field_prenomSignataire"
+                           formControlName="prenomSignataire"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.emailSignataire" for="field_emailSignataire">Email Signataire</label>
+                    <input type="text" class="form-control" name="emailSignataire" id="field_emailSignataire"
+                           formControlName="emailSignataire"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.importateur" for="field_importateur">Importateur</label>
+                    <select class="form-control" id="field_importateur" name="importateur" formControlName="importateur">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="importateurOption.id === editForm.get('importateur')!.value?.id ? editForm.get('importateur')!.value : importateurOption" *ngFor="let importateurOption of importateurs; trackBy: trackById">{{ importateurOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.certificatOrigine.entreprise" for="field_entreprise">Entreprise</label>
+                    <select class="form-control" id="field_entreprise" name="entreprise" formControlName="entreprise">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entrepriseOption.id === editForm.get('entreprise')!.value?.id ? editForm.get('entreprise')!.value : entrepriseOption" *ngFor="let entrepriseOption of entreprises; trackBy: trackById">{{ entrepriseOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

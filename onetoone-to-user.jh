@@ -1,0 +1,142 @@
+entity Entreprise {
+
+	raisonSocial String required
+    formeJuridique String required
+    secterActivite String required
+    rc Blob required
+    nif Blob required
+    nis Blob required
+    codeActivite String required
+    codeActiviteExport String
+    mobile String required
+    telFix String required
+    email String required
+    siteWeb String
+    Adresse String required
+    typeExportateur String
+    fax String
+    soldeCertif String
+                           
+}
+
+entity Gerant {
+	nom String required
+    prenom String required
+    email String required
+    tel String required
+    fax String 
+    mobile String required  
+}
+
+entity ChargeExport {
+
+	nom String required,
+	prenom String required,
+	fonction String required,
+	tel String required
+    fax String required
+    mobile String required
+  	signature ImageBlob required 
+    cachet  ImageBlob required 
+
+}
+
+entity Importateur {
+
+	raisonSocial String required
+    formeJuridique String required
+    secterActivite String required
+    mobile String required
+    telFix String required
+    email String required
+    siteWeb String
+    adresse String required
+    typeImportateur String
+    fax String                
+}
+
+// an ignored comment
+/** not an ignored comment */
+
+
+entity Produit {
+
+	nomProduit  String required
+    description String required
+    marque String 
+    hsCode String
+    qte String required
+    uniteMesure String required
+    nbrColi String required
+    poidNet String required
+    poidReel String required
+    dateFacture LocalDate required
+    numeroFacture String
+  
+}
+
+entity CertificatOrigine {
+
+ nomExportateur String required
+ adresseExportateur String required
+ nomProducteur String required
+ adresseProducteur String required
+ nomImportateur String required
+ adresseImportateur String required
+ payOrigine String required
+ autreOrigine Boolean
+ payAutreOrigine String
+ detailTransport String required
+ observation String 
+ etatCertificat String 
+ typeCertificats String 
+ nomSignataire String
+ prenomSignataire String
+ emailSignataire String
+ 
+}
+
+relationship OneToOne {
+	Entreprise{gerant} to Gerant,
+    Entreprise{chargeExport} to ChargeExport
+  
+	
+}
+
+relationship OneToMany {
+
+  Entreprise{importateur} to Importateur {entreprise},
+  Entreprise{produit} to Produit {entreprise}
+  Entreprise{certificatOrigine} to CertificatOrigine {entreprise}
+}
+
+relationship OneToOne {
+
+  Entreprise{user(login)} to User,
+
+}
+
+relationship OneToOne {
+	CertificatOrigine{importateur} to Importateur,   	
+}
+
+relationship OneToMany {
+
+  CertificatOrigine{produit} to Produit {certificatOrigine},
+
+}
+
+
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate Entreprise, Produit, ChargeExport, Gerant, Importateur  with pagination 
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

@@ -1,0 +1,103 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="certificatcaciApp.certificatOrigine.home.title">Certificat Origines</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-certificat-origine" [routerLink]="['/certificat-origine/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="certificatcaciApp.certificatOrigine.home.createLabel">
+            Create a new Certificat Origine
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="certificatOrigines?.length === 0">
+        <span jhiTranslate="certificatcaciApp.certificatOrigine.home.notFound">No certificatOrigines found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="certificatOrigines && certificatOrigines.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.nomExportateur">Nom Exportateur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.adresseExportateur">Adresse Exportateur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.nomProducteur">Nom Producteur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.adresseProducteur">Adresse Producteur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.nomImportateur">Nom Importateur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.adresseImportateur">Adresse Importateur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.payOrigine">Pay Origine</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.autreOrigine">Autre Origine</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.payAutreOrigine">Pay Autre Origine</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.detailTransport">Detail Transport</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.observation">Observation</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.etatCertificat">Etat Certificat</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.typeCertificats">Type Certificats</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.nomSignataire">Nom Signataire</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.prenomSignataire">Prenom Signataire</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.emailSignataire">Email Signataire</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.importateur">Importateur</span></th>
+                    <th scope="col" ><span jhiTranslate="certificatcaciApp.certificatOrigine.entreprise">Entreprise</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let certificatOrigine of certificatOrigines ;trackBy: trackId">
+                    <td><a [routerLink]="['/certificat-origine', certificatOrigine.id, 'view']">{{ certificatOrigine.id }}</a></td>
+                    <td>{{ certificatOrigine.nomExportateur }}</td>
+                    <td>{{ certificatOrigine.adresseExportateur }}</td>
+                    <td>{{ certificatOrigine.nomProducteur }}</td>
+                    <td>{{ certificatOrigine.adresseProducteur }}</td>
+                    <td>{{ certificatOrigine.nomImportateur }}</td>
+                    <td>{{ certificatOrigine.adresseImportateur }}</td>
+                    <td>{{ certificatOrigine.payOrigine }}</td>
+                    <td>{{ certificatOrigine.autreOrigine }}</td>
+                    <td>{{ certificatOrigine.payAutreOrigine }}</td>
+                    <td>{{ certificatOrigine.detailTransport }}</td>
+                    <td>{{ certificatOrigine.observation }}</td>
+                    <td>{{ certificatOrigine.etatCertificat }}</td>
+                    <td>{{ certificatOrigine.typeCertificats }}</td>
+                    <td>{{ certificatOrigine.nomSignataire }}</td>
+                    <td>{{ certificatOrigine.prenomSignataire }}</td>
+                    <td>{{ certificatOrigine.emailSignataire }}</td>
+                    <td>
+                        <div *ngIf="certificatOrigine.importateur">
+                            <a [routerLink]="['/importateur', certificatOrigine.importateur?.id, 'view']" >{{ certificatOrigine.importateur?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="certificatOrigine.entreprise">
+                            <a [routerLink]="['/entreprise', certificatOrigine.entreprise?.id, 'view']" >{{ certificatOrigine.entreprise?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/certificat-origine', certificatOrigine.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/certificat-origine', certificatOrigine.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(certificatOrigine)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

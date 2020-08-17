@@ -1,0 +1,40 @@
+{
+  "certificatcaciApp": {
+    "certificatOrigine": {
+      "home": {
+        "title": "Certificat Origines",
+        "createLabel": "Create a new Certificat Origine",
+        "createOrEditLabel": "Create or edit a Certificat Origine",
+        "notFound": "No Certificat Origines found"
+      },
+      "created": "A new Certificat Origine is created with identifier {{ param }}",
+      "updated": "A Certificat Origine is updated with identifier {{ param }}",
+      "deleted": "A Certificat Origine is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Certificat Origine {{ id }}?"
+      },
+      "detail": {
+        "title": "Certificat Origine"
+      },
+      "nomExportateur": "Nom Exportateur",
+      "adresseExportateur": "Adresse Exportateur",
+      "nomProducteur": "Nom Producteur",
+      "adresseProducteur": "Adresse Producteur",
+      "nomImportateur": "Nom Importateur",
+      "adresseImportateur": "Adresse Importateur",
+      "payOrigine": "Pay Origine",
+      "autreOrigine": "Autre Origine",
+      "payAutreOrigine": "Pay Autre Origine",
+      "detailTransport": "Detail Transport",
+      "observation": "Observation",
+      "etatCertificat": "Etat Certificat",
+      "typeCertificats": "Type Certificats",
+      "nomSignataire": "Nom Signataire",
+      "prenomSignataire": "Prenom Signataire",
+      "emailSignataire": "Email Signataire",
+      "importateur": "Importateur",
+      "produit": "Produit",
+      "entreprise": "Entreprise"
+    }
+  }
+}

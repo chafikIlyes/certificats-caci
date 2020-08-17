@@ -47,6 +47,16 @@ public class CacheConfiguration {
             createCache(cm, caci.certificats.domain.User.class.getName());
             createCache(cm, caci.certificats.domain.Authority.class.getName());
             createCache(cm, caci.certificats.domain.User.class.getName() + ".authorities");
+            createCache(cm, caci.certificats.domain.Entreprise.class.getName());
+            createCache(cm, caci.certificats.domain.Entreprise.class.getName() + ".importateurs");
+            createCache(cm, caci.certificats.domain.Entreprise.class.getName() + ".produits");
+            createCache(cm, caci.certificats.domain.Entreprise.class.getName() + ".certificatOrigines");
+            createCache(cm, caci.certificats.domain.Gerant.class.getName());
+            createCache(cm, caci.certificats.domain.ChargeExport.class.getName());
+            createCache(cm, caci.certificats.domain.Importateur.class.getName());
+            createCache(cm, caci.certificats.domain.Produit.class.getName());
+            createCache(cm, caci.certificats.domain.CertificatOrigine.class.getName());
+            createCache(cm, caci.certificats.domain.CertificatOrigine.class.getName() + ".produits");
             // jhipster-needle-ehcache-add-entry
         };
     }

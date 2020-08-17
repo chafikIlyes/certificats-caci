@@ -1,0 +1,103 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="certificatcaciApp.produit.home.title">Produits</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-produit" [routerLink]="['/produit/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="certificatcaciApp.produit.home.createLabel">
+            Create a new Produit
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="produits?.length === 0">
+        <span jhiTranslate="certificatcaciApp.produit.home.notFound">No produits found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="produits && produits.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nomProduit"><span jhiTranslate="certificatcaciApp.produit.nomProduit">Nom Produit</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="certificatcaciApp.produit.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="marque"><span jhiTranslate="certificatcaciApp.produit.marque">Marque</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="hsCode"><span jhiTranslate="certificatcaciApp.produit.hsCode">Hs Code</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="qte"><span jhiTranslate="certificatcaciApp.produit.qte">Qte</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="uniteMesure"><span jhiTranslate="certificatcaciApp.produit.uniteMesure">Unite Mesure</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nbrColi"><span jhiTranslate="certificatcaciApp.produit.nbrColi">Nbr Coli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="poidNet"><span jhiTranslate="certificatcaciApp.produit.poidNet">Poid Net</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="poidReel"><span jhiTranslate="certificatcaciApp.produit.poidReel">Poid Reel</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateFacture"><span jhiTranslate="certificatcaciApp.produit.dateFacture">Date Facture</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numeroFacture"><span jhiTranslate="certificatcaciApp.produit.numeroFacture">Numero Facture</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="entreprise.id"><span jhiTranslate="certificatcaciApp.produit.entreprise">Entreprise</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="certificatOrigine.id"><span jhiTranslate="certificatcaciApp.produit.certificatOrigine">Certificat Origine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let produit of produits ;trackBy: trackId">
+                    <td><a [routerLink]="['/produit', produit.id, 'view']">{{ produit.id }}</a></td>
+                    <td>{{ produit.nomProduit }}</td>
+                    <td>{{ produit.description }}</td>
+                    <td>{{ produit.marque }}</td>
+                    <td>{{ produit.hsCode }}</td>
+                    <td>{{ produit.qte }}</td>
+                    <td>{{ produit.uniteMesure }}</td>
+                    <td>{{ produit.nbrColi }}</td>
+                    <td>{{ produit.poidNet }}</td>
+                    <td>{{ produit.poidReel }}</td>
+                    <td>{{ produit.dateFacture | date:'mediumDate' }}</td>
+                    <td>{{ produit.numeroFacture }}</td>
+                    <td>
+                        <div *ngIf="produit.entreprise">
+                            <a [routerLink]="['/entreprise', produit.entreprise?.id, 'view']" >{{ produit.entreprise?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="produit.certificatOrigine">
+                            <a [routerLink]="['/certificat-origine', produit.certificatOrigine?.id, 'view']" >{{ produit.certificatOrigine?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/produit', produit.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/produit', produit.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(produit)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="produits && produits.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

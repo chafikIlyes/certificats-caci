@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chargeExport">
+            <h2><span jhiTranslate="certificatcaciApp.chargeExport.detail.title">Charge Export</span> {{ chargeExport.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ chargeExport.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{ chargeExport.prenom }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.fonction">Fonction</span></dt>
+                <dd>
+                    <span>{{ chargeExport.fonction }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.tel">Tel</span></dt>
+                <dd>
+                    <span>{{ chargeExport.tel }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.fax">Fax</span></dt>
+                <dd>
+                    <span>{{ chargeExport.fax }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.mobile">Mobile</span></dt>
+                <dd>
+                    <span>{{ chargeExport.mobile }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.signature">Signature</span></dt>
+                <dd>
+                    <div *ngIf="chargeExport.signature">
+                        <a (click)="openFile(chargeExport.signatureContentType, chargeExport.signature)">
+                            <img [src]="'data:' + chargeExport.signatureContentType + ';base64,' + chargeExport.signature" style="max-width: 100%;" alt="chargeExport image"/>
+                        </a>
+                        {{ chargeExport.signatureContentType }}, {{ byteSize(chargeExport.signature) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.chargeExport.cachet">Cachet</span></dt>
+                <dd>
+                    <div *ngIf="chargeExport.cachet">
+                        <a (click)="openFile(chargeExport.cachetContentType, chargeExport.cachet)">
+                            <img [src]="'data:' + chargeExport.cachetContentType + ';base64,' + chargeExport.cachet" style="max-width: 100%;" alt="chargeExport image"/>
+                        </a>
+                        {{ chargeExport.cachetContentType }}, {{ byteSize(chargeExport.cachet) }}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/charge-export', chargeExport.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

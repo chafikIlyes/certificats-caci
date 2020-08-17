@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="entreprise">
+            <h2><span jhiTranslate="certificatcaciApp.entreprise.detail.title">Entreprise</span> {{ entreprise.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.raisonSocial">Raison Social</span></dt>
+                <dd>
+                    <span>{{ entreprise.raisonSocial }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.formeJuridique">Forme Juridique</span></dt>
+                <dd>
+                    <span>{{ entreprise.formeJuridique }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.secterActivite">Secter Activite</span></dt>
+                <dd>
+                    <span>{{ entreprise.secterActivite }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.rc">Rc</span></dt>
+                <dd>
+                    <div *ngIf="entreprise.rc">
+                        <a (click)="openFile(entreprise.rcContentType, entreprise.rc)" jhiTranslate="entity.action.open">open</a>
+                        {{ entreprise.rcContentType }}, {{ byteSize(entreprise.rc) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.nif">Nif</span></dt>
+                <dd>
+                    <div *ngIf="entreprise.nif">
+                        <a (click)="openFile(entreprise.nifContentType, entreprise.nif)" jhiTranslate="entity.action.open">open</a>
+                        {{ entreprise.nifContentType }}, {{ byteSize(entreprise.nif) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.nis">Nis</span></dt>
+                <dd>
+                    <div *ngIf="entreprise.nis">
+                        <a (click)="openFile(entreprise.nisContentType, entreprise.nis)" jhiTranslate="entity.action.open">open</a>
+                        {{ entreprise.nisContentType }}, {{ byteSize(entreprise.nis) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.codeActivite">Code Activite</span></dt>
+                <dd>
+                    <span>{{ entreprise.codeActivite }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.codeActiviteExport">Code Activite Export</span></dt>
+                <dd>
+                    <span>{{ entreprise.codeActiviteExport }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.mobile">Mobile</span></dt>
+                <dd>
+                    <span>{{ entreprise.mobile }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.telFix">Tel Fix</span></dt>
+                <dd>
+                    <span>{{ entreprise.telFix }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.email">Email</span></dt>
+                <dd>
+                    <span>{{ entreprise.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.siteWeb">Site Web</span></dt>
+                <dd>
+                    <span>{{ entreprise.siteWeb }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{ entreprise.adresse }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.typeExportateur">Type Exportateur</span></dt>
+                <dd>
+                    <span>{{ entreprise.typeExportateur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.fax">Fax</span></dt>
+                <dd>
+                    <span>{{ entreprise.fax }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.soldeCertif">Solde Certif</span></dt>
+                <dd>
+                    <span>{{ entreprise.soldeCertif }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.gerant">Gerant</span></dt>
+                <dd>
+                    <div *ngIf="entreprise.gerant">
+                        <a [routerLink]="['/gerant', entreprise.gerant?.id, 'view']">{{ entreprise.gerant?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.chargeExport">Charge Export</span></dt>
+                <dd>
+                    <div *ngIf="entreprise.chargeExport">
+                        <a [routerLink]="['/charge-export', entreprise.chargeExport?.id, 'view']">{{ entreprise.chargeExport?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.entreprise.user">User</span></dt>
+                <dd>
+                    {{ entreprise.user?.login }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/entreprise', entreprise.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
