@@ -1,0 +1,29 @@
+{
+  "certificatcaciApp": {
+    "chargeExport": {
+      "home": {
+        "title": "Charge Exports",
+        "createLabel": "Create a new Charge Export",
+        "createOrEditLabel": "Create or edit a Charge Export",
+        "notFound": "No Charge Exports found"
+      },
+      "created": "A new Charge Export is created with identifier {{ param }}",
+      "updated": "A Charge Export is updated with identifier {{ param }}",
+      "deleted": "A Charge Export is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Charge Export {{ id }}?"
+      },
+      "detail": {
+        "title": "Charge Export"
+      },
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "fonction": "Fonction",
+      "tel": "Tel",
+      "fax": "Fax",
+      "mobile": "Mobile",
+      "signature": "Signature",
+      "cachet": "Cachet"
+    }
+  }
+}

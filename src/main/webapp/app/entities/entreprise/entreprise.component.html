@@ -1,0 +1,126 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="certificatcaciApp.entreprise.home.title">Entreprises</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-entreprise" [routerLink]="['/entreprise/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="certificatcaciApp.entreprise.home.createLabel">
+            Create a new Entreprise
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="entreprises?.length === 0">
+        <span jhiTranslate="certificatcaciApp.entreprise.home.notFound">No entreprises found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="entreprises && entreprises.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="raisonSocial"><span jhiTranslate="certificatcaciApp.entreprise.raisonSocial">Raison Social</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="formeJuridique"><span jhiTranslate="certificatcaciApp.entreprise.formeJuridique">Forme Juridique</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="secterActivite"><span jhiTranslate="certificatcaciApp.entreprise.secterActivite">Secter Activite</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="rc"><span jhiTranslate="certificatcaciApp.entreprise.rc">Rc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nif"><span jhiTranslate="certificatcaciApp.entreprise.nif">Nif</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nis"><span jhiTranslate="certificatcaciApp.entreprise.nis">Nis</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codeActivite"><span jhiTranslate="certificatcaciApp.entreprise.codeActivite">Code Activite</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codeActiviteExport"><span jhiTranslate="certificatcaciApp.entreprise.codeActiviteExport">Code Activite Export</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mobile"><span jhiTranslate="certificatcaciApp.entreprise.mobile">Mobile</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telFix"><span jhiTranslate="certificatcaciApp.entreprise.telFix">Tel Fix</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="certificatcaciApp.entreprise.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="siteWeb"><span jhiTranslate="certificatcaciApp.entreprise.siteWeb">Site Web</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adresse"><span jhiTranslate="certificatcaciApp.entreprise.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="typeExportateur"><span jhiTranslate="certificatcaciApp.entreprise.typeExportateur">Type Exportateur</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fax"><span jhiTranslate="certificatcaciApp.entreprise.fax">Fax</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="soldeCertif"><span jhiTranslate="certificatcaciApp.entreprise.soldeCertif">Solde Certif</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="gerant.id"><span jhiTranslate="certificatcaciApp.entreprise.gerant">Gerant</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="chargeExport.id"><span jhiTranslate="certificatcaciApp.entreprise.chargeExport">Charge Export</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="certificatcaciApp.entreprise.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entreprise of entreprises ;trackBy: trackId">
+                    <td><a [routerLink]="['/entreprise', entreprise.id, 'view']">{{ entreprise.id }}</a></td>
+                    <td>{{ entreprise.raisonSocial }}</td>
+                    <td>{{ entreprise.formeJuridique }}</td>
+                    <td>{{ entreprise.secterActivite }}</td>
+                    <td>
+                        <a *ngIf="entreprise.rc" (click)="openFile(entreprise.rcContentType, entreprise.rc)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="entreprise.rc">{{ entreprise.rcContentType }}, {{ byteSize(entreprise.rc) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="entreprise.nif" (click)="openFile(entreprise.nifContentType, entreprise.nif)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="entreprise.nif">{{ entreprise.nifContentType }}, {{ byteSize(entreprise.nif) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="entreprise.nis" (click)="openFile(entreprise.nisContentType, entreprise.nis)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="entreprise.nis">{{ entreprise.nisContentType }}, {{ byteSize(entreprise.nis) }}</span>
+                    </td>
+                    <td>{{ entreprise.codeActivite }}</td>
+                    <td>{{ entreprise.codeActiviteExport }}</td>
+                    <td>{{ entreprise.mobile }}</td>
+                    <td>{{ entreprise.telFix }}</td>
+                    <td>{{ entreprise.email }}</td>
+                    <td>{{ entreprise.siteWeb }}</td>
+                    <td>{{ entreprise.adresse }}</td>
+                    <td>{{ entreprise.typeExportateur }}</td>
+                    <td>{{ entreprise.fax }}</td>
+                    <td>{{ entreprise.soldeCertif }}</td>
+                    <td>
+                        <div *ngIf="entreprise.gerant">
+                            <a [routerLink]="['/gerant', entreprise.gerant?.id, 'view']" >{{ entreprise.gerant?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="entreprise.chargeExport">
+                            <a [routerLink]="['/charge-export', entreprise.chargeExport?.id, 'view']" >{{ entreprise.chargeExport?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        {{ entreprise.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/entreprise', entreprise.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/entreprise', entreprise.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(entreprise)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="entreprises && entreprises.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

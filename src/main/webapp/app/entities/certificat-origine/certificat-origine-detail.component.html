@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="certificatOrigine">
+            <h2><span jhiTranslate="certificatcaciApp.certificatOrigine.detail.title">Certificat Origine</span> {{ certificatOrigine.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.nomExportateur">Nom Exportateur</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.nomExportateur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.adresseExportateur">Adresse Exportateur</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.adresseExportateur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.nomProducteur">Nom Producteur</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.nomProducteur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.adresseProducteur">Adresse Producteur</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.adresseProducteur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.nomImportateur">Nom Importateur</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.nomImportateur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.adresseImportateur">Adresse Importateur</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.adresseImportateur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.payOrigine">Pay Origine</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.payOrigine }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.autreOrigine">Autre Origine</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.autreOrigine }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.payAutreOrigine">Pay Autre Origine</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.payAutreOrigine }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.detailTransport">Detail Transport</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.detailTransport }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.observation">Observation</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.observation }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.etatCertificat">Etat Certificat</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.etatCertificat }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.typeCertificats">Type Certificats</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.typeCertificats }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.nomSignataire">Nom Signataire</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.nomSignataire }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.prenomSignataire">Prenom Signataire</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.prenomSignataire }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.emailSignataire">Email Signataire</span></dt>
+                <dd>
+                    <span>{{ certificatOrigine.emailSignataire }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.importateur">Importateur</span></dt>
+                <dd>
+                    <div *ngIf="certificatOrigine.importateur">
+                        <a [routerLink]="['/importateur', certificatOrigine.importateur?.id, 'view']">{{ certificatOrigine.importateur?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.certificatOrigine.entreprise">Entreprise</span></dt>
+                <dd>
+                    <div *ngIf="certificatOrigine.entreprise">
+                        <a [routerLink]="['/entreprise', certificatOrigine.entreprise?.id, 'view']">{{ certificatOrigine.entreprise?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/certificat-origine', certificatOrigine.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

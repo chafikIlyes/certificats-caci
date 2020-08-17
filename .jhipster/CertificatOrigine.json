@@ -1,0 +1,127 @@
+{
+  "name": "CertificatOrigine",
+  "fields": [
+    {
+      "fieldName": "nomExportateur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "adresseExportateur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "nomProducteur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "adresseProducteur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "nomImportateur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "adresseImportateur",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "payOrigine",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "autreOrigine",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "payAutreOrigine",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "detailTransport",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "observation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatCertificat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeCertificats",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomSignataire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenomSignataire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailSignataire",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "importateur",
+      "otherEntityRelationshipName": "certificatOrigine",
+      "relationshipName": "importateur",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "certificatOrigine",
+      "relationshipName": "produit"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entreprise",
+      "otherEntityRelationshipName": "certificatOrigine",
+      "relationshipName": "entreprise",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200817130846",
+  "entityTableName": "certificat_origine",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

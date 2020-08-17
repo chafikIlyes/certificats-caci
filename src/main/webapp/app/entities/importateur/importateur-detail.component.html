@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="importateur">
+            <h2><span jhiTranslate="certificatcaciApp.importateur.detail.title">Importateur</span> {{ importateur.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="certificatcaciApp.importateur.raisonSocial">Raison Social</span></dt>
+                <dd>
+                    <span>{{ importateur.raisonSocial }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.formeJuridique">Forme Juridique</span></dt>
+                <dd>
+                    <span>{{ importateur.formeJuridique }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.secterActivite">Secter Activite</span></dt>
+                <dd>
+                    <span>{{ importateur.secterActivite }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.mobile">Mobile</span></dt>
+                <dd>
+                    <span>{{ importateur.mobile }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.telFix">Tel Fix</span></dt>
+                <dd>
+                    <span>{{ importateur.telFix }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.email">Email</span></dt>
+                <dd>
+                    <span>{{ importateur.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.siteWeb">Site Web</span></dt>
+                <dd>
+                    <span>{{ importateur.siteWeb }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.adresse">Adresse</span></dt>
+                <dd>
+                    <span>{{ importateur.adresse }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.typeImportateur">Type Importateur</span></dt>
+                <dd>
+                    <span>{{ importateur.typeImportateur }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.fax">Fax</span></dt>
+                <dd>
+                    <span>{{ importateur.fax }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.importateur.entreprise">Entreprise</span></dt>
+                <dd>
+                    <div *ngIf="importateur.entreprise">
+                        <a [routerLink]="['/entreprise', importateur.entreprise?.id, 'view']">{{ importateur.entreprise?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/importateur', importateur.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

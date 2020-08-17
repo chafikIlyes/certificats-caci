@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity CertificatOrigine.
+    -->
+    <changeSet id="20200817130846-1" author="jhipster">
+        <createTable tableName="certificat_origine">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nom_exportateur" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="adresse_exportateur" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="nom_producteur" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="adresse_producteur" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="nom_importateur" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="adresse_importateur" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="pay_origine" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="autre_origine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="pay_autre_origine" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="detail_transport" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="observation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="etat_certificat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type_certificats" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nom_signataire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="prenom_signataire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="email_signataire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="importateur_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_certificat_origine_importateur_id" />
+            </column>
+            <column name="entreprise_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20200817130846-1-relations" author="jhipster">
+
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20200817130846-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/certificat_origine.csv"
+                  separator=";"
+                  tableName="certificat_origine">
+            <column name="id" type="numeric"/>
+            <column name="nom_exportateur" type="string"/>
+            <column name="adresse_exportateur" type="string"/>
+            <column name="nom_producteur" type="string"/>
+            <column name="adresse_producteur" type="string"/>
+            <column name="nom_importateur" type="string"/>
+            <column name="adresse_importateur" type="string"/>
+            <column name="pay_origine" type="string"/>
+            <column name="autre_origine" type="boolean"/>
+            <column name="pay_autre_origine" type="string"/>
+            <column name="detail_transport" type="string"/>
+            <column name="observation" type="string"/>
+            <column name="etat_certificat" type="string"/>
+            <column name="type_certificats" type="string"/>
+            <column name="nom_signataire" type="string"/>
+            <column name="prenom_signataire" type="string"/>
+            <column name="email_signataire" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

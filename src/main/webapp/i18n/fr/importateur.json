@@ -1,0 +1,32 @@
+{
+  "certificatcaciApp": {
+    "importateur": {
+      "home": {
+        "title": "Importateurs",
+        "createLabel": "Créer un nouveau Importateur",
+        "createOrEditLabel": "Créer ou éditer un Importateur",
+        "notFound": "Aucun Importateur trouvé"
+      },
+      "created": "Un nouveau Importateur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Importateur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Importateur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Importateur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Importateur"
+      },
+      "raisonSocial": "Raison Social",
+      "formeJuridique": "Forme Juridique",
+      "secterActivite": "Secter Activite",
+      "mobile": "Mobile",
+      "telFix": "Tel Fix",
+      "email": "Email",
+      "siteWeb": "Site Web",
+      "adresse": "Adresse",
+      "typeImportateur": "Type Importateur",
+      "fax": "Fax",
+      "entreprise": "Entreprise"
+    }
+  }
+}

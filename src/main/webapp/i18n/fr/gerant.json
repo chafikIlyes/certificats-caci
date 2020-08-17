@@ -1,0 +1,27 @@
+{
+  "certificatcaciApp": {
+    "gerant": {
+      "home": {
+        "title": "Gerants",
+        "createLabel": "Créer un nouveau Gerant",
+        "createOrEditLabel": "Créer ou éditer un Gerant",
+        "notFound": "Aucun Gerant trouvé"
+      },
+      "created": "Un nouveau Gerant a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Gerant avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Gerant avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Gerant {{ id }} ?"
+      },
+      "detail": {
+        "title": "Gerant"
+      },
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "tel": "Tel",
+      "fax": "Fax",
+      "mobile": "Mobile"
+    }
+  }
+}

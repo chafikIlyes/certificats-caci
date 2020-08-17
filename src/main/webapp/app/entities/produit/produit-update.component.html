@@ -1,0 +1,160 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-produit-heading" jhiTranslate="certificatcaciApp.produit.home.createOrEditLabel">Create or edit a Produit</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.nomProduit" for="field_nomProduit">Nom Produit</label>
+                    <input type="text" class="form-control" name="nomProduit" id="field_nomProduit"
+                           formControlName="nomProduit"/>
+                    <div *ngIf="editForm.get('nomProduit')!.invalid && (editForm.get('nomProduit')!.dirty || editForm.get('nomProduit')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nomProduit')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.marque" for="field_marque">Marque</label>
+                    <input type="text" class="form-control" name="marque" id="field_marque"
+                           formControlName="marque"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.hsCode" for="field_hsCode">Hs Code</label>
+                    <input type="text" class="form-control" name="hsCode" id="field_hsCode"
+                           formControlName="hsCode"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.qte" for="field_qte">Qte</label>
+                    <input type="text" class="form-control" name="qte" id="field_qte"
+                           formControlName="qte"/>
+                    <div *ngIf="editForm.get('qte')!.invalid && (editForm.get('qte')!.dirty || editForm.get('qte')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('qte')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.uniteMesure" for="field_uniteMesure">Unite Mesure</label>
+                    <input type="text" class="form-control" name="uniteMesure" id="field_uniteMesure"
+                           formControlName="uniteMesure"/>
+                    <div *ngIf="editForm.get('uniteMesure')!.invalid && (editForm.get('uniteMesure')!.dirty || editForm.get('uniteMesure')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('uniteMesure')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.nbrColi" for="field_nbrColi">Nbr Coli</label>
+                    <input type="text" class="form-control" name="nbrColi" id="field_nbrColi"
+                           formControlName="nbrColi"/>
+                    <div *ngIf="editForm.get('nbrColi')!.invalid && (editForm.get('nbrColi')!.dirty || editForm.get('nbrColi')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nbrColi')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.poidNet" for="field_poidNet">Poid Net</label>
+                    <input type="text" class="form-control" name="poidNet" id="field_poidNet"
+                           formControlName="poidNet"/>
+                    <div *ngIf="editForm.get('poidNet')!.invalid && (editForm.get('poidNet')!.dirty || editForm.get('poidNet')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('poidNet')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.poidReel" for="field_poidReel">Poid Reel</label>
+                    <input type="text" class="form-control" name="poidReel" id="field_poidReel"
+                           formControlName="poidReel"/>
+                    <div *ngIf="editForm.get('poidReel')!.invalid && (editForm.get('poidReel')!.dirty || editForm.get('poidReel')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('poidReel')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.dateFacture" for="field_dateFacture">Date Facture</label>
+                    <div class="input-group">
+                        <input id="field_dateFacture" type="text" class="form-control" name="dateFacture" ngbDatepicker #dateFactureDp="ngbDatepicker" formControlName="dateFacture"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateFactureDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('dateFacture')!.invalid && (editForm.get('dateFacture')!.dirty || editForm.get('dateFacture')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateFacture')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.numeroFacture" for="field_numeroFacture">Numero Facture</label>
+                    <input type="text" class="form-control" name="numeroFacture" id="field_numeroFacture"
+                           formControlName="numeroFacture"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.entreprise" for="field_entreprise">Entreprise</label>
+                    <select class="form-control" id="field_entreprise" name="entreprise" formControlName="entreprise">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="entrepriseOption.id === editForm.get('entreprise')!.value?.id ? editForm.get('entreprise')!.value : entrepriseOption" *ngFor="let entrepriseOption of entreprises; trackBy: trackById">{{ entrepriseOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.produit.certificatOrigine" for="field_certificatOrigine">Certificat Origine</label>
+                    <select class="form-control" id="field_certificatOrigine" name="certificatOrigine" formControlName="certificatOrigine">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="certificatOrigineOption.id === editForm.get('certificatOrigine')!.value?.id ? editForm.get('certificatOrigine')!.value : certificatOrigineOption" *ngFor="let certificatOrigineOption of certificatorigines; trackBy: trackById">{{ certificatOrigineOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

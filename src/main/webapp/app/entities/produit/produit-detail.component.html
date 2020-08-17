@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="produit">
+            <h2><span jhiTranslate="certificatcaciApp.produit.detail.title">Produit</span> {{ produit.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="certificatcaciApp.produit.nomProduit">Nom Produit</span></dt>
+                <dd>
+                    <span>{{ produit.nomProduit }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.description">Description</span></dt>
+                <dd>
+                    <span>{{ produit.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.marque">Marque</span></dt>
+                <dd>
+                    <span>{{ produit.marque }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.hsCode">Hs Code</span></dt>
+                <dd>
+                    <span>{{ produit.hsCode }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.qte">Qte</span></dt>
+                <dd>
+                    <span>{{ produit.qte }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.uniteMesure">Unite Mesure</span></dt>
+                <dd>
+                    <span>{{ produit.uniteMesure }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.nbrColi">Nbr Coli</span></dt>
+                <dd>
+                    <span>{{ produit.nbrColi }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.poidNet">Poid Net</span></dt>
+                <dd>
+                    <span>{{ produit.poidNet }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.poidReel">Poid Reel</span></dt>
+                <dd>
+                    <span>{{ produit.poidReel }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.dateFacture">Date Facture</span></dt>
+                <dd>
+                    <span>{{ produit.dateFacture }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.numeroFacture">Numero Facture</span></dt>
+                <dd>
+                    <span>{{ produit.numeroFacture }}</span>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.entreprise">Entreprise</span></dt>
+                <dd>
+                    <div *ngIf="produit.entreprise">
+                        <a [routerLink]="['/entreprise', produit.entreprise?.id, 'view']">{{ produit.entreprise?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="certificatcaciApp.produit.certificatOrigine">Certificat Origine</span></dt>
+                <dd>
+                    <div *ngIf="produit.certificatOrigine">
+                        <a [routerLink]="['/certificat-origine', produit.certificatOrigine?.id, 'view']">{{ produit.certificatOrigine?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/produit', produit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

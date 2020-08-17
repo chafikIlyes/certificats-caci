@@ -1,0 +1,95 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="certificatcaciApp.chargeExport.home.title">Charge Exports</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-charge-export" [routerLink]="['/charge-export/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="certificatcaciApp.chargeExport.home.createLabel">
+            Create a new Charge Export
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="chargeExports?.length === 0">
+        <span jhiTranslate="certificatcaciApp.chargeExport.home.notFound">No chargeExports found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="chargeExports && chargeExports.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nom"><span jhiTranslate="certificatcaciApp.chargeExport.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prenom"><span jhiTranslate="certificatcaciApp.chargeExport.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fonction"><span jhiTranslate="certificatcaciApp.chargeExport.fonction">Fonction</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tel"><span jhiTranslate="certificatcaciApp.chargeExport.tel">Tel</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fax"><span jhiTranslate="certificatcaciApp.chargeExport.fax">Fax</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mobile"><span jhiTranslate="certificatcaciApp.chargeExport.mobile">Mobile</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="signature"><span jhiTranslate="certificatcaciApp.chargeExport.signature">Signature</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cachet"><span jhiTranslate="certificatcaciApp.chargeExport.cachet">Cachet</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chargeExport of chargeExports ;trackBy: trackId">
+                    <td><a [routerLink]="['/charge-export', chargeExport.id, 'view']">{{ chargeExport.id }}</a></td>
+                    <td>{{ chargeExport.nom }}</td>
+                    <td>{{ chargeExport.prenom }}</td>
+                    <td>{{ chargeExport.fonction }}</td>
+                    <td>{{ chargeExport.tel }}</td>
+                    <td>{{ chargeExport.fax }}</td>
+                    <td>{{ chargeExport.mobile }}</td>
+                    <td>
+                        <a *ngIf="chargeExport.signature" (click)="openFile(chargeExport.signatureContentType, chargeExport.signature)">
+                            <img [src]="'data:' + chargeExport.signatureContentType + ';base64,' + chargeExport.signature" style="max-height: 30px;" alt="chargeExport image"/>
+                        </a>
+                        <span *ngIf="chargeExport.signature">{{ chargeExport.signatureContentType }}, {{ byteSize(chargeExport.signature) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="chargeExport.cachet" (click)="openFile(chargeExport.cachetContentType, chargeExport.cachet)">
+                            <img [src]="'data:' + chargeExport.cachetContentType + ';base64,' + chargeExport.cachet" style="max-height: 30px;" alt="chargeExport image"/>
+                        </a>
+                        <span *ngIf="chargeExport.cachet">{{ chargeExport.cachetContentType }}, {{ byteSize(chargeExport.cachet) }}</span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/charge-export', chargeExport.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/charge-export', chargeExport.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(chargeExport)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="chargeExports && chargeExports.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

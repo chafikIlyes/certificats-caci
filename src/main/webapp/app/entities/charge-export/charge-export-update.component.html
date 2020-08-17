@@ -1,0 +1,146 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-charge-export-heading" jhiTranslate="certificatcaciApp.chargeExport.home.createOrEditLabel">Create or edit a Charge Export</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.prenom" for="field_prenom">Prenom</label>
+                    <input type="text" class="form-control" name="prenom" id="field_prenom"
+                           formControlName="prenom"/>
+                    <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.fonction" for="field_fonction">Fonction</label>
+                    <input type="text" class="form-control" name="fonction" id="field_fonction"
+                           formControlName="fonction"/>
+                    <div *ngIf="editForm.get('fonction')!.invalid && (editForm.get('fonction')!.dirty || editForm.get('fonction')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fonction')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.tel" for="field_tel">Tel</label>
+                    <input type="text" class="form-control" name="tel" id="field_tel"
+                           formControlName="tel"/>
+                    <div *ngIf="editForm.get('tel')!.invalid && (editForm.get('tel')!.dirty || editForm.get('tel')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tel')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.fax" for="field_fax">Fax</label>
+                    <input type="text" class="form-control" name="fax" id="field_fax"
+                           formControlName="fax"/>
+                    <div *ngIf="editForm.get('fax')!.invalid && (editForm.get('fax')!.dirty || editForm.get('fax')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fax')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.mobile" for="field_mobile">Mobile</label>
+                    <input type="text" class="form-control" name="mobile" id="field_mobile"
+                           formControlName="mobile"/>
+                    <div *ngIf="editForm.get('mobile')!.invalid && (editForm.get('mobile')!.dirty || editForm.get('mobile')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('mobile')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.signature" for="field_signature">Signature</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('signatureContentType')!.value + ';base64,' + editForm.get('signature')!.value" style="max-height: 100px;" *ngIf="editForm.get('signature')!.value" alt="chargeExport image"/>
+                        <div *ngIf="editForm.get('signature')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('signatureContentType')!.value }}, {{ byteSize(editForm.get('signature')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('signature', 'signatureContentType', 'file_signature')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_signature" (change)="setFileData($event, 'signature', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="signature" id="field_signature"
+                           formControlName="signature"/>
+                    <input type="hidden" class="form-control" name="signatureContentType" id="field_signatureContentType"
+                           formControlName="signatureContentType" />
+                    <div *ngIf="editForm.get('signature')!.invalid && (editForm.get('signature')!.dirty || editForm.get('signature')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('signature')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="certificatcaciApp.chargeExport.cachet" for="field_cachet">Cachet</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('cachetContentType')!.value + ';base64,' + editForm.get('cachet')!.value" style="max-height: 100px;" *ngIf="editForm.get('cachet')!.value" alt="chargeExport image"/>
+                        <div *ngIf="editForm.get('cachet')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('cachetContentType')!.value }}, {{ byteSize(editForm.get('cachet')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('cachet', 'cachetContentType', 'file_cachet')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_cachet" (change)="setFileData($event, 'cachet', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="cachet" id="field_cachet"
+                           formControlName="cachet"/>
+                    <input type="hidden" class="form-control" name="cachetContentType" id="field_cachetContentType"
+                           formControlName="cachetContentType" />
+                    <div *ngIf="editForm.get('cachet')!.invalid && (editForm.get('cachet')!.dirty || editForm.get('cachet')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cachet')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
